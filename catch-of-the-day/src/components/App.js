@@ -6,6 +6,9 @@ import sampleFishes from '../sample-fishes';
 import Fish from "./Fish";
 
 class App extends React.Component {
+	constructor(props){
+		super(props);
+	};
 
 	// setting state as a property vs. this.setState() in the constructor
 	// Wes prefers this way
@@ -13,13 +16,10 @@ class App extends React.Component {
 		fishes: {},
 		order: {}
 	};
-	constructor(props){
-		super(props);
-	};
+	
 
 	addFish = (fish) => {
 		// an object spread
-		debugger;
 		const fishes = {...this.state.fishes};
 
 		// date.now = seconds since 1970
@@ -33,6 +33,18 @@ class App extends React.Component {
 		this.setState({
 			fishes: sampleFishes
 		});
+	};
+	addToOrder = (key) => {
+
+		const order = {...this.state.order};
+		
+		// if order.fish1 doesn't exist, then just set to 1
+		//order.fish1 = order.fish1 + 1 || 1;
+		order[key] = order[key] + 1 || 1;
+		this.setState({order});
+
+
+
 	};
 	render() {
 		return (
@@ -49,7 +61,7 @@ class App extends React.Component {
 		              />
 		            ))}
 		            </ul>
-					<Order />
+					<Order fishes={this.state.fishes} order={this.state.order}  />
 					<Inventory loadSampleFishes={this.loadSampleFishes} addFish={this.addFish} />
 				</div>
 
