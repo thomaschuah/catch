@@ -4,11 +4,23 @@ import Order from "./Order";
 import Inventory from "./Inventory";
 import sampleFishes from '../sample-fishes';
 import Fish from "./Fish";
+import base from "../base";
+
 
 class App extends React.Component {
 	constructor(props){
 		super(props);
 	};
+
+	componentDidMount() {
+		// es6 object destructuring
+		const {params} = this.props.match;
+		// this.ref = base.syncState(`${params.storeId}/fishes`, {
+		// 	context: this, 
+		// 	state: 'fishes'
+		// });
+
+	}
 
 	// setting state as a property vs. this.setState() in the constructor
 	// Wes prefers this way
